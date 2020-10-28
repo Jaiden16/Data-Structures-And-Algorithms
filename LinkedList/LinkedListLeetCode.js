@@ -29,7 +29,7 @@ var mergeTwoLists = function (l1, l2) {
     } else if (l2.length === 0) {
         return l1
     }
-    
+
     // if (l1.head.val < l2.head.val) {
     //     result.push(l1.head.val)
     //     l1.shift()
@@ -50,7 +50,8 @@ var mergeTwoLists = function (l1, l2) {
         }
 
     }
-    while ( l1.length > 0) {
+
+    while (l1.length > 0) {
         result.push(l1.head.val)
         l1.shift()
     }
@@ -80,5 +81,67 @@ let l2 = arrayToLinkedList([3, 4, 5, 5])
 let l3 = arrayToLinkedList([])
 let l4 = arrayToLinkedList([])
 // console.log(l1)
-let result = mergeTwoLists(l1, l2)
-console.log(result)
+// let result = mergeTwoLists(l1, l2)
+// console.log(result)
+
+var mergeTwoLists2 = function (l1, l2) {
+    let result = null
+    let tail = null;
+
+    //if both list are empty return an empty array
+    if (!l1 && !l2) {
+        return null
+    }
+    //if one list is empty return the other list
+    if (!l1) {
+        return l2
+    }
+
+    if (!l2) {
+        return l1
+    }
+
+
+    while (l1 && l2) {
+
+        if (l1.val < l2.val) {
+            
+            if (result === null) {
+                result = new ListNode(l1.val)
+                tail = result
+            } else {
+                tail.next = new ListNode(l1.val)
+                tail = tail.next
+            }
+            l1 = l1.next
+        } else {
+            
+            if(result === null){
+                result = new ListNode(l2.val)
+                tail = result
+            }else{
+                tail.next = new ListNode(l2.val)
+                tail = tail.next
+            }
+            l2 = l2.next
+        }
+
+    }
+
+    while (l1) {
+        tail.next = new ListNode(l1.val)
+        tail = tail.next
+        l1 = l1.next
+    }
+
+    while (l2) {
+        tail.next = new ListNode(l2.val)
+        tail = tail.next
+        l2 = l2.next
+    }
+    return result
+};
+
+let result2 = mergeTwoLists2(l1.head, l2.head)
+console.log('146',result2)
+console.log(JSON.stringify(result2,null,2))
