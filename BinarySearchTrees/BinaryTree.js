@@ -42,23 +42,26 @@ class BinarySearchTree {
         // console.log('line 41:', "node:", start, 'value:', valueArg)
 
         if (!this.root) return "no root";
-        let found = false;
+        //let found = false;
 
         function recursive(bst) {
             if (value === bst.value) {
                 console.log("found it")
-                found = true;
+                // found = true;
+                return true;
             }
 
             if (bst.left !== null && value < bst.value) {
-                recursive(bst.left);
+                return recursive(bst.left);
             }
 
             if (bst.right !== null && value > bst.value) {
-                recursive(bst.right);
+                return recursive(bst.right);
             }
+
+            return false;
         }
-        recursive(this.root)
+        let found = recursive(this.root)
         return found;
     }
 
@@ -118,4 +121,11 @@ tree.Insert(4);
 //console.log(tree);
 tree.Insert(6);
 //console.log(tree);
-console.log(tree.Contain(6))
+console.log(tree.Find(4))
+
+// function add (a , b){
+//  let sum = a + b;
+//  return sum;
+// }
+// let result = add(1,2);
+// console.log(result);
