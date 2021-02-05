@@ -86,17 +86,77 @@ class BinarySearchTree {
         }
         return false;
     }
+
+    BFS(){
+        //Create a queue(this can be an array) and a variable to store the values of nodes visited
+        let queue = [];
+        let data = [];
+        let node = this.root;
+        //Place the root node in the queue
+        queue.push(node);
+        
+        //loop as long as there is something in the queue
+        while(queue.length){
+            //-Dequeue a node from the queue and push the value of the node
+            //into the variable that stores the nodes
+            node = queue.shift();
+            data.push(node.value);
+            //-if there is a left property on the node dequeue - add it to the queue
+            if(node.left)queue.push(node.left);
+            //-if there is a right property on the node dequeue = add it to the queue
+            if(node.right)queue.push(node.right);
+        }
+        return data;
+    }
+
+    DFS_PreOrder(){
+        //Create a variable to store the valiues of nodes visited
+        let data = [];
+        
+        //Store the root of the BST in a variable called current
+        //let current = this.root;
+       
+        //Write a helper function which accepts a node
+       function traverse(node){
+           //-Push the value of the node to the variable that stores the values
+           data.push(node.value);
+           //if the node has a left property, call the helper function with the left property of the node
+           if(node.left)  traverse(node.left);
+           //if the node has a right property, call the helper function with the right property on the node
+           if(node.right) traverse(node.right);
+        }
+        
+        //invoke the helper function with the current variable
+        traverse(this.root);
+        //return the array of values
+        return data;
+    }
+
+    DFS_PostOrder(){
+        //Create a variable to store the valiues of nodes visited
+        let data = [];
+        
+        //Store the root of the BST in a variable called current
+        //let current = this.root;
+       
+        //Write a helper function which accepts a node
+       function traverse(node){
+           //if the node has a left property, call the helper function with the left property of the node
+           if(node.left)  traverse(node.left);
+           //if the node has a right property, call the helper function with the right property on the node
+           if(node.right) traverse(node.right);
+           
+           //-Push the value of the node to the variable that stores the values
+           data.push(node.value);
+        }
+        
+        //invoke the helper function with the current variable
+        traverse(this.root);
+        //return the array of values
+        return data;
+
+    }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -110,22 +170,18 @@ class Node {
 
 var tree = new BinarySearchTree();
 
-
-tree.Insert(7);
-//console.log(tree);
-tree.Insert(5);
-//console.log(tree);
-tree.Insert(8);
-//console.log(tree);
-tree.Insert(4);
+tree.Insert(10);
 //console.log(tree);
 tree.Insert(6);
 //console.log(tree);
-console.log(tree.Find(4))
-
-// function add (a , b){
-//  let sum = a + b;
-//  return sum;
-// }
-// let result = add(1,2);
-// console.log(result);
+tree.Insert(15);
+//console.log(tree);
+tree.Insert(3);
+//console.log(tree);
+tree.Insert(8);
+tree.Insert(20);
+//console.log(tree);
+//console.log(tree.Find(4))
+// console.log(tree.BFS());
+console.log(tree.DFS_PreOrder());
+console.log(tree.DFS_PostOrder());
