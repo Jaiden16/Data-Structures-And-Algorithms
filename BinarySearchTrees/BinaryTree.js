@@ -156,6 +156,34 @@ class BinarySearchTree {
         return data;
 
     }
+
+    DFS_InOrder(){
+
+        //Create a variable to store the valiues of nodes visited
+        let data = [];
+        
+        //Store the root of the BST in a variable called current
+        //let current = this.root;
+       
+        //Write a helper function which accepts a node
+       function traverse(node){
+           //if the node has a left property, call the helper function with the left property of the node
+           if(node.left)  traverse(node.left);
+           
+           //-Push the value of the node to the variable that stores the values
+           data.push(node.value);
+           
+           //if the node has a right property, call the helper function with the right property on the node
+           if(node.right) traverse(node.right);
+        }
+           
+        
+        //invoke the helper function with the current variable
+        traverse(this.root);
+        //return the array of values
+        return data;
+    }
+
 }
 
 
@@ -182,6 +210,7 @@ tree.Insert(8);
 tree.Insert(20);
 //console.log(tree);
 //console.log(tree.Find(4))
-// console.log(tree.BFS());
-console.log(tree.DFS_PreOrder());
-console.log(tree.DFS_PostOrder());
+//console.log(tree.BFS());
+//console.log(tree.DFS_PreOrder());
+//console.log(tree.DFS_PostOrder());
+//console.log(tree.DFS_InOrder());
