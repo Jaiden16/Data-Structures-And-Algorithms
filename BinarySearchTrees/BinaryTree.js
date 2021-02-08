@@ -184,6 +184,19 @@ class BinarySearchTree {
         return data;
     }
 
+    FromArray(arr){
+        if(!arr.length){
+            return "array is empty"
+        }
+        //create a tree from an array
+        for(let i = 0; i <  arr.length; i++){
+            if(arr[i] !== null){
+                this.Insert(arr[i])
+            }
+        }
+        
+    }
+
 }
 
 
@@ -196,18 +209,27 @@ class Node {
     }
 }
 
-var tree = new BinarySearchTree();
+module.exports = BinarySearchTree;
 
-tree.Insert(10);
+// let tree1 = new BinarySearchTree();
+// let tree2 = new BinarySearchTree();
+// let array1 = [10,6,15,3,8,20];
+// let array2 = [10,6,15,3,8,25];
+
+// tree1.FromArray(array1);
+// console.log(tree1.DFS_PostOrder());
+
+
+//tree.Insert(10);
 //console.log(tree);
-tree.Insert(6);
+//tree.Insert(6);
 //console.log(tree);
-tree.Insert(15);
+//tree.Insert(15);
 //console.log(tree);
-tree.Insert(3);
+//tree.Insert(3);
 //console.log(tree);
-tree.Insert(8);
-tree.Insert(20);
+//tree.Insert(8);
+//tree.Insert(20);
 //console.log(tree);
 //console.log(tree.Find(4))
 //console.log(tree.BFS());
